@@ -7,4 +7,10 @@ if (( $# == 0 )); then
   exit 0
 fi
 
-/usr/bin/printf '%s\n' "$@" | /usr/bin/pbcopy
+{
+  /usr/bin/printf '%s' "$1"
+  shift
+  for path in "$@"; do
+    /usr/bin/printf '\n%s' "$path"
+  done
+} | /usr/bin/pbcopy
